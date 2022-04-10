@@ -13,7 +13,8 @@
     "lint": "npm-run-all --parallel lint:*",
     "prepack": "npm run build",
     "prepare": "husky install",
-    "start": "rollup -c -w"
+    "start": "rollup -c -w",
+    "test": "echo \"Error: no test specified\" && exit 0"
   },
   "type": "module",
   "typings": "./types/index.d.ts",
