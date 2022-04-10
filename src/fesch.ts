@@ -30,7 +30,7 @@ export const Fesch = (options: Fesch.Options) => {
 
           let method;
 
-          const acceptHeader = userOptions?.headers?.['Accept'] || 'application/json';
+          const acceptHeader = userOptions?.headers?.['Accept'];
           const contentType = response.headers.get('Content-Type');
 
           switch (true) {
