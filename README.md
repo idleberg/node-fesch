@@ -19,7 +19,7 @@ Local browser cache for the [Fetch API][]
 import { Fesch } from 'fesch';
 
 const { fetch } = Fesch({
-    expiry: 60 * 60 * 24 * 1000, // 1 day
+    expiry: 86_400_000, // 1 day
 });
 
 // Uses the standard Fetch API
