@@ -26,7 +26,7 @@ export const Fesch = (options: Fesch.Options) => {
         }
 
         try {
-          const response = await window.fetch(href, userOptions);
+          const response = await window.fetch(input, userOptions);
 
           let method;
 
