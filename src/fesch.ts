@@ -28,37 +28,12 @@ export const Fesch = (options: Fesch.Options) => {
         try {
           const response = await window.fetch(input, userOptions);
 
-          let method;
+          const acceptHeader = userOptions?.headers?.['Accept']?.trim()?.toLowerCase() || '';
+          const contentType = response.headers.get('Content-Type')?.trim()?.toLowerCase() || '';
 
-          const acceptHeader = userOptions?.headers?.['Accept'];
-          const contentType = response.headers.get('Content-Type');
-
-          switch (true) {
-            case acceptHeader === 'application/json':
-            case contentType === 'application/json':
-                method = 'json';
-                break;
-
-            case acceptHeader === 'application/octet-stream':
-            case contentType === 'application/octet-stream':
-              method = 'arrayBuffer';
-              break;
-
-            case acceptHeader === 'multipart/form-data':
-            case contentType === 'multipart/form-data':
-              method = 'formData';
-              break;
-
-            case acceptHeader?.startsWith('text/'):
-            case contentType?.startsWith('text/'):
-              method = 'text';
-              break;
-
-            default:
-              throw Error('Unsupported response method')
-          }
-
+          const method = getMethod(acceptHeader, contentType);
           const item = await response[method]();
+
           await Store.setItem(href, item, {
             expires: Date.now() + options.expires
           });
@@ -70,4 +45,27 @@ export const Fesch = (options: Fesch.Options) => {
       }
     }
   )
+}
+
+function getMethod(acceptHeader: string, contentType: string): string {
+  switch (true) {
+    case acceptHeader.trim()?.startsWith('application/json'):
+    case contentType.trim()?.startsWith('application/json'):
+        return 'json';
+
+    case acceptHeader.trim()?.startsWith('application/octet-stream'):
+    case contentType.trim()?.startsWith('application/octet-stream'):
+      return 'arrayBuffer';
+
+    case acceptHeader.trim()?.startsWith('multipart/form-data'):
+    case contentType.trim()?.startsWith('multipart/form-data'):
+      return 'formData';
+
+    case acceptHeader?.trim()?.startsWith('text/'):
+    case contentType?.trim()?.startsWith('text/'):
+      return 'text';
+
+    default:
+      throw Error('Could not determine response method')
+  }
 }
