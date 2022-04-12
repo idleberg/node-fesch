@@ -23,10 +23,10 @@ const { fetch } = Fesch({
 });
 
 // Uses the standard Fetch API
-await fetch('https://jsonplaceholder.typicode.com/todos/1', {
+await fetch('https://jsonplaceholder.typicode.com/todos/1' {
     headers: {
         accept: 'application/json',
-    },
+    }
 });
 ```
 
