@@ -2,7 +2,7 @@
 
 [![npm](https://flat.badgen.net/npm/license/fesch)](https://www.npmjs.org/package/fesch)
 [![npm](https://flat.badgen.net/npm/v/fesch)](https://www.npmjs.org/package/fesch)
-[![CI](https://img.shields.io/github/workflow/status/idleberg/node-fesch/CI?style=flat-square)](https://github.com/idleberg/node-fesch/actions)
+[![CI](https://img.shields.io/github/actions/workflow/status/idleberg/node-fesch/default.yml?style=flat-square)](https://github.com/idleberg/node-fesch/actions)
 [![Snyk](https://flat.badgen.net/snyk/idleberg/fesch)](https://snyk.io/vuln/npm:fesch)
 
 Local browser cache for the [Fetch API][]
